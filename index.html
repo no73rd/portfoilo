@@ -1,0 +1,30 @@
+﻿            let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            let msg = `🍔 *طلب جديد من موقع Wiki Burger* 🍔\n`;
+            msg += `--------------------------------\n`;
+            msg += `👤 *الاسم:* ${name}\n`;
+            msg += `📞 *رقم الهاتف:* ${phone}\n`;
+            msg += `📍 *العنوان:* ${address}\n`;
+            if (notes) msg += `📝 *ملاحظات:* ${notes}\n`;
+            msg += `--------------------------------\n`;
+            msg += `🛒 *تفاصيل الطلب:*\n`;
+
+            cart.forEach((item, idx) => {
+                const sizeText = item.size ? ` (${item.size})` : '';
+                msg += `${idx + 1}. ${item.title}${sizeText} x${item.qty} = ${item.price * item.qty} ج.م\n`;
+            });
+
+            msg += `--------------------------------\n`;
+            msg += `💰 *المبلغ الإجمالي المطلق:* ${totalPrice} ج.م\n`;
+            msg += `📌 *موقع المحل:* طوخ - شارع الساحة - أمام شركة WE\n`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            const whatsappUrl = `https://wa.me/${RESTAURANT_WHATSAPP}?text=${encodedMsg}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
+
+
+
